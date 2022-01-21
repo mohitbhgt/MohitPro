@@ -1,0 +1,42 @@
+<!-- ./employee/templates/employee/list.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Student List</title>
+{% endblock title %}
+
+{% block content %}
+    <h1 style="text-align: center; padding-top: 1em; padding-bottom: 1em;">Student Information</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Class</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Enrollment ID</th>
+                <th scope="col">Student Subject</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.student_name }}</td>
+                    <td>{{ student.student_class }}</td>
+                    <td>{{ student.student_gender }}</td>
+                    <td>{{ student.student_enrollment_id }}</td>
+                    <td>{{ student.student_subject }}</td>
+                    <td>
+                        <a style="margin-right: 30px;" href="{% url 'edit' student.id%}">Edit</a>
+                        <a href="{% url 'delete' student.id%}">Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <a href="{% url 'create' %}"><button type="button" class="btn btn-primary">Add New Info</button></a>
+    </div>
+{% endblock content %}
